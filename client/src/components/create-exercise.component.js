@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
+import axios from 'axios';
 import "react-datepicker/dist/react-datepicker.css";
 
 export default class CreateExercise extends Component {
@@ -18,10 +19,16 @@ export default class CreateExercise extends Component {
 	}
 
 	componentDidMount() {
-		this.setState({
-			users: ['test user'],
-			username: 'test user',
-		});
+		axios.get("http://localhost:5000/api/v1/users/")
+		.then(res => {
+			if(res.data.length > 0) {
+				this.setState({
+					users: res.data.map(user => user.username),
+					username: res.data[0].username,
+				})
+			}
+		})
+		.catch(err => console.log(err));
 	}
 
 	onChange(e) {
@@ -41,8 +48,12 @@ export default class CreateExercise extends Component {
 			duration: this.state.duration,
 			date: this.state.date,
 		};
-		//Submit Exercise to database
-		window.location = '/';
+
+		axios.post('http://localhost:5000/api/v1/exercises/add', exercise)
+		.then(res => {
+			console.log(res.data)
+			window.location = '/';
+		});
 	}
 	render() {
 		return (
@@ -55,6 +66,7 @@ export default class CreateExercise extends Component {
 							ref="userInput"
 							required
 							className="form-control"
+							name="username"
 							value={this.state.username}
 							onChange={this.onChange}>
 							{
@@ -94,12 +106,9 @@ export default class CreateExercise extends Component {
 							onChange={this.onDate}
 						/>
 					</div>
-
-					<button 
-						type="submit" 
-						className="btn btn-primary">
-					Create Exercise Log
-					</button>
+					<div className="form-group">
+						<input type="submit" value="Create Exercise Log" className="btn btn-primary" />
+					</div>
 				</form>
 			</div>
 		)
