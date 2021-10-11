@@ -30,9 +30,11 @@ connection.once('open', () => {
 
 const exercisesRouter = require('./api/exercises.route');
 const usersRouter = require('./api/users.route');
+const groupsRouter = require('./api/groups.route');
 
 app.use('/api/v1/exercises/', exercisesRouter);
 app.use('/api/v1/users/', usersRouter);
+app.use('/api/v1/groups/', groupsRouter);
 
 app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);
