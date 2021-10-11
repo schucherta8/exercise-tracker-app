@@ -21,7 +21,8 @@ export default class CreateUser extends Component {
 		const user = {username: this.state.username};
 
 		axios.post('http://localhost:5000/api/v1/users/add', user)
-		.then(res => console.log(res.data));
+		.then(res => console.log(res.data))
+		.catch(err => console.error(err));
 		
 		this.setState({
 			username: '',
