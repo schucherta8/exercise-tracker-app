@@ -27,6 +27,12 @@ function Navbar() {
 							className="nav-link">Create User
 						</Link>
 					</li>
+					<li className="navbar-item">
+						<Link 
+							to="/group" 
+							className="nav-link">Create Group
+						</Link>
+					</li>
 				</ul>
 			</div>
 		</nav>
