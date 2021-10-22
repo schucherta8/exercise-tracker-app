@@ -1,20 +1,27 @@
 const mongoose = require('mongoose');
 
 const groupSchema = new mongoose.Schema({
-	groupname: {
+	name: {
 		type: String,
 		required: true,
 		minlength: 3,
 	},
-	users: {
-		type: [mongoose.Schema.Types.ObjectId], 
-		ref: 'User',
+	creator: {
+		type: String,
+		required: true,
+		minlength: 3,
 	},
 	enddate: {
 		type: Date,
 		required: true
 	},
 }, {timestamps: true});
+
+groupSchema.virtual('users', {
+	ref: 'User',
+	localField: '_id',
+	foreignField: 'groups',
+});
 
 const Group = mongoose.model('Group', groupSchema);
 

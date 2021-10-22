@@ -29,22 +29,33 @@ const userSchema = new mongoose.Schema({
 		trim: true,
 		minlength: 8,
 	},
-	groups: {
-		type: [mongoose.Types.ObjectId], 
-		ref: 'Group',
+	weight: {
+		type: Number,
+		min: 80,
+		max: 700,
 	},
 	bet: {
 		type: Number,
 		min: 0,
 	},	
-	cash: {
+	bank: {
 		type: Number,
 		min: 0,
 	},
-
+	groups: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Group'
+	}],
 }, {
 	timestamps: true,
 });
+
+userSchema.virtual('activities', {
+	ref: 'Activity',
+	localField: '_id',
+	foreignField: 'user',
+});
+
 
 const User = mongoose.model('User', userSchema);
 
