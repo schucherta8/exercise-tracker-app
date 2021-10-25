@@ -36,6 +36,7 @@ export default class CreateGroup extends Component {
 
 	onAdd() {
 		const newUser = this.state.selectedUser;
+		if (newUser === "none") return;
 		let index = this.state.selectedUsers.findIndex(user => user.username === newUser);
 		if(index >= 0){
 			return;
@@ -91,43 +92,6 @@ export default class CreateGroup extends Component {
 							value={this.state.groupname}
 							onChange={this.onChange}
 						/>
-					</div>
-					<div className="form-group">
-						<label>Add Users:</label>
-						<select
-							required
-							className="form-control"
-							name="selectedUser"
-							value={this.state.selectedUser}
-							onChange={this.onChange}
-							>
-							{
-								this.state.users.map( user => 
-								<option 
-									key={user._id}
-									value={user.username}
-								>
-								{user.username}
-								</option>)
-							}
-						</select>
-						<button 
-							type="button" 
-							className="btn btn-primary"
-							onClick={this.onAdd}>
-						Add User
-						</button>
-					</div>
-					<div className="form-group">
-						<h3>Users Currently Added:</h3>
-						<ul>
-						{
-							this.state.selectedUsers.map( user => 
-							<li key={user._id}>
-							{user.username}
-							</li>)
-						}
-						</ul>
 					</div>
 					<div className="form-group">
 						<label>Date: </label>

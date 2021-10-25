@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Navbar from './components/navbar.component';
 import ExerciseList from './components/exercises-list.component';
 import EditExercise from './components/edit-exercise.component';
-import CreateExercise from './components/create-exercise.component';
+import CreateActivity from './components/create-exercise.component';
 import CreateUser from './components/create-user.component';
 import CreateGroup from './components/create-group.component';
 
@@ -16,7 +16,7 @@ function App() {
         <br />
         <Route path="/" exact component={ExerciseList} />
         <Route path="/edit/:id" component={EditExercise} />
-        <Route path="/create" component={CreateExercise} />
+        <Route path="/activity" component={CreateActivity} />
         <Route path="/user" component={CreateUser} />
         <Route path="/group" component={CreateGroup} />
       </div>
