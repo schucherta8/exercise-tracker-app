@@ -4,7 +4,7 @@ let Activity = require('../models/activity.model');
 //Get all activities
 router.route('/').get((req, res) => {
 	Activity.find()
-	.then(activitys => res.json(activitys))
+	.then(activities => res.json(activities))
 	.catch(err => res.status(400).json(`Error: ${err}`));
 });
 

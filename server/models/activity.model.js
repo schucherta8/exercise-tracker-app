@@ -1,11 +1,6 @@
 const mongoose =  require('mongoose');
 
 const exerciseSchema = new mongoose.Schema({
-	name: {
-		type: String,
-		required: true,
-		min: 3,
-	},
 	type: {
 		type: String,
 		enum: ['CARDIO', 'WEIGHTLIFTING'],
@@ -24,12 +19,12 @@ const exerciseSchema = new mongoose.Schema({
 		type: Number,
 		min: 0,
 	},
-	rep: {
+	reps: {
 		type: Number,
 		min: 1,
 		max: 100,
 	},
-	set: {
+	sets: {
 		type: Number,
 		min: 1,
 		max: 20,
